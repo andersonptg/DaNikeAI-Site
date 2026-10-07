@@ -1,0 +1,2132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #04050a;
+    --text: #f5f7ff;
+    --muted: #8c92a3;
+    --blue: #3b82f6;
+    --purple: #8b5cf6;
+    --line: rgba(255,255,255,.08);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 50% 20%, rgba(59,130,246,.12), transparent 32%),
+        radial-gradient(circle at 80% 55%, rgba(139,92,246,.08), transparent 28%),
+        var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+    overflow-x: hidden;
+}
+
+/* FUNDO */
+
+.background-grid {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: .18;
+    background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.glow {
+    position: fixed;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: .12;
+    pointer-events: none;
+}
+
+.glow-blue {
+    background: #2563eb;
+    top: -180px;
+    left: -160px;
+}
+
+.glow-purple {
+    background: #7c3aed;
+    right: -180px;
+    top: 35%;
+}
+
+/* TOPO */
+
+header {
+    width: min(1120px, calc(100% - 40px));
+    margin: auto;
+    padding: 28px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -.5px;
+}
+
+.brand > span:last-child span {
+    color: #7aa7ff;
+}
+
+.brand-mark {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    box-shadow: 0 0 25px rgba(59,130,246,.3);
+    font-weight: 800;
+}
+
+.status {
+    color: #7e8597;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.status i {
+    width: 7px;
+    height: 7px;
+    background: #35e58b;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #35e58b;
+}
+
+/* HERO */
+
+main {
+    position: relative;
+    z-index: 1;
+}
+
+.hero {
+    min-height: 670px;
+    width: min(900px, calc(100% - 40px));
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.hero-badge {
+    padding: 8px 14px;
+    border: 1px solid rgba(96,165,250,.2);
+    border-radius: 50px;
+    background: rgba(59,130,246,.06);
+    color: #8fb9ff;
+    font-size: 10px;
+    letter-spacing: 2px;
+    backdrop-filter: blur(10px);
+}
+
+.hero-badge span {
+    color: #b69cff;
+    margin-right: 5px;
+}
+
+h1 {
+    margin-top: 25px;
+    max-width: 750px;
+    font-size: clamp(48px, 8vw, 88px);
+    line-height: .95;
+    letter-spacing: -5px;
+    font-weight: 700;
+}
+
+h1 strong {
+    display: block;
+    background: linear-gradient(90deg, #fff, #79a9ff, #a68bff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero-text {
+    max-width: 510px;
+    margin-top: 25px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-size: 15px;
+}
+
+/* DOWNLOAD */
+
+.download-card {
+    width: min(440px, 100%);
+    margin-top: 38px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: rgba(10,12,20,.72);
+    backdrop-filter: blur(22px);
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.35),
+        inset 0 1px rgba(255,255,255,.04);
+}
+
+.app-info {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    text-align: left;
+}
+
+.app-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    box-shadow: 0 0 30px rgba(59,130,246,.22);
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.app-info h2 {
+    font-size: 16px;
+}
+
+.app-info p {
+    margin-top: 4px;
+    color: #73798a;
+    font-size: 12px;
+}
+
+.download-button {
+    margin-top: 17px;
+    width: 100%;
+    height: 56px;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(100deg, #2563eb, #7048e8);
+    color: white;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    box-shadow: 0 12px 35px rgba(59,130,246,.2);
+    transition: .25s ease;
+}
+
+.download-button span {
+    font-size: 20px;
+}
+
+.download-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 45px rgba(59,130,246,.32);
+}
+
+.current-version {
+    margin-top: 12px;
+    color: #646a79;
+    font-size: 9px;
+    letter-spacing: 1.4px;
+}
+
+.current-version strong {
+    color: #aab0c0;
+    margin-left: 4px;
+}
+
+/* VERSÕES */
+
+.versions {
+    width: min(900px, calc(100% - 40px));
+    margin: 0 auto 90px;
+    padding-top: 35px;
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--line);
+}
+
+.section-title > div > span {
+    color: #65708a;
+    font-size: 9px;
+    letter-spacing: 2px;
+}
+
+.section-title h2 {
+    margin-top: 6px;
+    font-size: 28px;
+    letter-spacing: -1px;
+}
+
+.section-title > p {
+    color: #626878;
+    font-size: 12px;
+}
+
+.version-list {
+    border-bottom: 1px solid var(--line);
+}
+
+.version-item {
+    min-height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+}
+
+.version-item:last-child {
+    border-bottom: 0;
+}
+
+.version-item strong {
+    display: block;
+    font-size: 14px;
+}
+
+.version-item span {
+    display: block;
+    margin-top: 5px;
+    color: #686e7d;
+    font-size: 11px;
+}
+
+.version-item a {
+    color: #7da9ff;
+    text-decoration: none;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.version-item.active strong {
+    color: #fff;
+}
+
+/* RODAPÉ */
+
+footer {
+    width: min(1120px, calc(100% - 40px));
+    margin: auto;
+    padding: 25px 0 35px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    color: #505665;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+
+    header {
+        width: calc(100% - 30px);
+        padding: 20px 0;
+    }
+
+    .status {
+        display: none;
+    }
+
+    .hero {
+        min-height: 620px;
+        width: calc(100% - 30px);
+    }
+
+    h1 {
+        font-size: clamp(45px, 14vw, 68px);
+        letter-spacing: -3px;
+    }
+
+    .hero-text {
+        font-size: 14px;
+        max-width: 340px;
+    }
+
+    .download-card {
+        padding: 15px;
+    }
+
+    .versions {
+        width: calc(100% - 30px);
+    }
+
+    .section-title > p {
+        display: none;
+    }
+
+    footer {
+        width: calc(100% - 30px);
+    }
+}
+
+.footer-brand {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.footer-brand small {
+    color: #3f4450;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+}
+
+.instagram-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #777d8c;
+    text-decoration: none;
+    font-size: 10px;
+    transition: .25s ease;
+}
+
+.instagram-link:hover {
+    color: #d6b56a;
+}
+
+.instagram-icon {
+    width: 23px;
+    height: 23px;
+    border: 1px solid rgba(214,181,106,.55);
+    border-radius: 7px;
+    display: grid;
+    place-items: center;
+    color: #d6b56a;
+    font-size: 17px;
+}
+
+.verified-badge {
+    width: 15px;
+    height: 15px;
+    display: inline-grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #e8c875, #a97b27);
+    color: #090909;
+    font-size: 9px;
+    font-weight: 900;
+    box-shadow: 0 0 10px rgba(214,181,106,.22);
+}
+
+@media (max-width: 600px) {
+    footer {
+        align-items: center;
+        gap: 18px;
+    }
+}
+
+/* ===== TOPO PREMIUM ===== */
+
+header {
+    align-items: flex-start;
+    gap: 25px;
+}
+
+.top-brand {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+}
+
+.creator-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 3px;
+}
+
+.creator-info strong {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #e8e9ee;
+    font-weight: 700;
+}
+
+.creator-info span {
+    font-size: 11px;
+    color: #777d8c;
+    letter-spacing: .2px;
+}
+
+/* Instagram */
+
+.instagram-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #c5c8d0;
+    text-decoration: none;
+    font-size: 10px;
+    transition: .25s ease;
+    white-space: nowrap;
+    margin-top: 2px;
+}
+
+.instagram-link:hover {
+    color: #ffffff;
+}
+
+.instagram-icon-real {
+    width: 25px;
+    height: 25px;
+    display: block;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 7px rgba(221,42,123,.20));
+}
+
+.verified-badge {
+    width: 15px;
+    height: 15px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #1877f2;
+    color: #ffffff;
+    font-size: 9px;
+    font-weight: 900;
+    line-height: 1;
+    box-shadow: 0 1px 5px rgba(24,119,242,.25);
+}
+
+/* Mobile */
+
+@media (max-width: 700px) {
+    header {
+        align-items: flex-start;
+    }
+
+    .top-brand {
+        gap: 12px;
+    }
+
+    .creator-info {
+        max-width: 145px;
+    }
+
+    .creator-info strong {
+        font-size: 8px;
+        letter-spacing: 1.4px;
+    }
+
+    .creator-info span {
+        font-size: 9px;
+    }
+
+    .instagram-link {
+        font-size: 9px;
+        gap: 5px;
+    }
+
+    .instagram-icon-real {
+        width: 22px;
+        height: 22px;
+    }
+
+    .verified-badge {
+        width: 13px;
+        height: 13px;
+        font-size: 8px;
+    }
+}
+
+
+/* ===== RESPONSIVIDADE / SEM ROLAGEM LATERAL ===== */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+img,
+svg {
+    max-width: 100%;
+}
+
+main,
+header,
+footer,
+section {
+    max-width: 100%;
+}
+
+@media (max-width: 700px) {
+    header {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .top-brand {
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .creator-info {
+        min-width: 0;
+    }
+
+    .creator-info strong,
+    .creator-info span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .instagram-link {
+        max-width: 100%;
+    }
+
+    .instagram-link span {
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .hero,
+    .versions,
+    .download-card,
+    .version-list {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+
+/* Ajuste fino — Instagram no topo */
+.instagram-link {
+    font-size: 12px;
+}
+
+.instagram-icon-real {
+    width: 29px;
+    height: 29px;
+}
+
+.verified-badge {
+    width: 17px;
+    height: 17px;
+    font-size: 10px;
+}
+
+@media (max-width: 700px) {
+    .instagram-link {
+        font-size: 10px;
+    }
+
+    .instagram-icon-real {
+        width: 25px;
+        height: 25px;
+    }
+
+    .verified-badge {
+        width: 15px;
+        height: 15px;
+        font-size: 9px;
+    }
+}
+
+
+/* ===== FUNDO IA CINEMATOGRÁFICO ===== */
+
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(4,5,10,0.98) 0%,
+            rgba(4,5,10,0.88) 35%,
+            rgba(4,5,10,0.55) 65%,
+            rgba(4,5,10,0.78) 100%
+        ),
+        url("ia-background.webp") center center / cover no-repeat;
+
+    filter: saturate(1.15) contrast(1.08);
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -2;
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 72% 42%,
+            rgba(45,110,255,0.14),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 82% 55%,
+            rgba(120,50,255,0.10),
+            transparent 38%
+        );
+
+    mix-blend-mode: screen;
+}
+
+main,
+header,
+footer {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* =========================================================
+   DaNikeAI — ROSTO NEON HOLOGRÁFICO
+   ========================================================= */
+
+.ai-neon-face {
+    position: fixed;
+    width: min(720px, 75vw);
+    height: min(820px, 92vh);
+    right: -70px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+    pointer-events: none;
+    opacity: .78;
+    filter: drop-shadow(0 0 25px rgba(0, 120, 255, .22));
+}
+
+.ai-head {
+    position: absolute;
+    inset: 8% 10%;
+    border-radius: 48% 48% 45% 45%;
+    background:
+        radial-gradient(
+            ellipse at 50% 38%,
+            rgba(30, 120, 255, .12),
+            transparent 45%
+        ),
+        radial-gradient(
+            ellipse at 50% 65%,
+            rgba(110, 50, 255, .07),
+            transparent 55%
+        );
+
+    border: 1px solid rgba(0, 150, 255, .20);
+
+    box-shadow:
+        inset 0 0 45px rgba(0, 110, 255, .08),
+        0 0 30px rgba(0, 110, 255, .10);
+
+    transform: perspective(900px) rotateY(-7deg);
+
+    animation: aiFloat 8s ease-in-out infinite;
+}
+
+/* linhas holográficas do rosto */
+
+.ai-head::before,
+.ai-head::after {
+    content: "";
+    position: absolute;
+    inset: 4%;
+    border-radius: inherit;
+    pointer-events: none;
+}
+
+.ai-head::before {
+    border-top: 1px solid rgba(0, 180, 255, .55);
+    border-bottom: 1px solid rgba(80, 90, 255, .22);
+    box-shadow:
+        0 -30px 20px rgba(0, 130, 255, .05),
+        0 30px 20px rgba(100, 40, 255, .04);
+}
+
+.ai-head::after {
+    inset: 8% 14%;
+    border-left: 1px solid rgba(0, 140, 255, .22);
+    border-right: 1px solid rgba(130, 60, 255, .18);
+    opacity: .8;
+}
+
+/* OLHOS */
+
+.ai-eye {
+    position: absolute;
+    top: 31%;
+    width: 28%;
+    height: 8%;
+    border-radius: 50%;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #ffffff 0%,
+            #8fdcff 10%,
+            #008cff 28%,
+            rgba(0, 95, 255, .45) 55%,
+            transparent 76%
+        );
+
+    box-shadow:
+        0 0 8px #168cff,
+        0 0 22px rgba(0, 130, 255, .85),
+        0 0 50px rgba(0, 100, 255, .45);
+
+    animation:
+        aiEyeGlow 3.4s ease-in-out infinite,
+        aiBlink 7s infinite;
+}
+
+.ai-eye-left {
+    left: 17%;
+    transform: rotate(5deg);
+}
+
+.ai-eye-right {
+    right: 17%;
+    transform: rotate(-5deg);
+}
+
+.ai-eye span {
+    position: absolute;
+    width: 22%;
+    height: 70%;
+    left: 39%;
+    top: 15%;
+    border-radius: 50%;
+    background: #ffffff;
+
+    box-shadow:
+        0 0 8px #ffffff,
+        0 0 18px #2ca4ff,
+        0 0 30px #0077ff;
+
+    animation: aiEyeCore 2.2s ease-in-out infinite;
+}
+
+/* NARIZ */
+
+.ai-nose {
+    position: absolute;
+    left: 50%;
+    top: 37%;
+    width: 1px;
+    height: 24%;
+    transform: translateX(-50%);
+
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 150, 255, .65),
+        rgba(100, 70, 255, .45),
+        transparent
+    );
+
+    box-shadow:
+        0 0 12px rgba(0, 130, 255, .65);
+}
+
+/* BOCA */
+
+.ai-mouth {
+    position: absolute;
+    left: 29%;
+    right: 29%;
+    top: 67%;
+    height: 8%;
+
+    border-bottom: 1px solid rgba(0, 150, 255, .48);
+    border-radius: 0 0 50% 50%;
+
+    box-shadow:
+        0 8px 15px rgba(0, 120, 255, .08);
+}
+
+/* FRAGMENTOS */
+
+.ai-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: #35aaff;
+
+    box-shadow:
+        0 0 6px #008cff,
+        0 0 14px rgba(0, 130, 255, .85);
+
+    animation: aiParticle 4s ease-in-out infinite;
+}
+
+.p1 { left: 4%;  top: 20%; animation-delay: -.4s; }
+.p2 { left: 0%;  top: 38%; animation-delay: -1.2s; }
+.p3 { left: 7%;  top: 61%; animation-delay: -2s; }
+.p4 { right: 1%; top: 27%; animation-delay: -2.8s; }
+.p5 { right: 3%; top: 47%; animation-delay: -1.7s; }
+.p6 { right: 8%; top: 68%; animation-delay: -.8s; }
+.p7 { left: 18%; top: 91%; animation-delay: -3.1s; }
+.p8 { left: 77%; top: 88%; animation-delay: -2.3s; }
+.p9 { left: 91%; top: 13%; animation-delay: -1.5s; }
+.p10 { left: 10%; top: 78%; animation-delay: -.2s; }
+
+/* ANIMAÇÕES */
+
+@keyframes aiBlink {
+    0%, 44%, 46%, 72%, 74%, 100% {
+        transform: scaleY(1);
+    }
+
+    45%, 73% {
+        transform: scaleY(.06);
+    }
+}
+
+@keyframes aiEyeGlow {
+    0%, 100% {
+        opacity: .78;
+        filter: brightness(.9);
+    }
+
+    50% {
+        opacity: 1;
+        filter: brightness(1.35);
+    }
+}
+
+@keyframes aiEyeCore {
+    0%, 100% {
+        transform: translateX(-8px);
+        opacity: .75;
+    }
+
+    50% {
+        transform: translateX(8px);
+        opacity: 1;
+    }
+}
+
+@keyframes aiFloat {
+    0%, 100% {
+        transform: perspective(900px) rotateY(-7deg) translateY(0);
+    }
+
+    50% {
+        transform: perspective(900px) rotateY(-7deg) translateY(-10px);
+    }
+}
+
+@keyframes aiParticle {
+    0%, 100% {
+        transform: translate(0, 0) scale(.7);
+        opacity: .25;
+    }
+
+    50% {
+        transform: translate(12px, -16px) scale(1.5);
+        opacity: 1;
+    }
+}
+
+/* Mantém o conteúdo sempre acima do rosto */
+
+header,
+main,
+footer {
+    z-index: 2;
+}
+
+/* Celular */
+
+@media (max-width: 700px) {
+    .ai-neon-face {
+        width: 470px;
+        height: 600px;
+        right: -175px;
+        opacity: .48;
+    }
+}
+
+@media (max-width: 430px) {
+    .ai-neon-face {
+        width: 390px;
+        height: 520px;
+        right: -155px;
+        opacity: .38;
+    }
+}
+
+
+/* =========================================================
+   DaNikeAI — ROSTO NEON V2
+   Humanoide, sério, estável e cinematográfico
+   ========================================================= */
+
+.ai-neon-face {
+    width: min(650px, 72vw);
+    height: min(760px, 88vh);
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: .82;
+    filter:
+        drop-shadow(0 0 18px rgba(0, 110, 255, .25))
+        drop-shadow(0 0 55px rgba(65, 40, 255, .10));
+}
+
+/* Silhueta humana */
+
+.ai-head {
+    inset: 7% 12%;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    transform: none;
+    animation: aiFaceBreath 9s ease-in-out infinite;
+}
+
+/* Contorno principal do rosto */
+
+.ai-head::before {
+    inset: 3% 13% 4% 13%;
+
+    border: 1px solid rgba(0, 155, 255, .38);
+    border-top-color: rgba(70, 185, 255, .62);
+    border-bottom-color: rgba(100, 65, 255, .38);
+
+    border-radius:
+        46% 46% 38% 38% /
+        27% 27% 73% 73%;
+
+    transform:
+        perspective(700px)
+        rotateX(-3deg);
+
+    box-shadow:
+        0 0 12px rgba(0, 140, 255, .20),
+        inset 0 0 28px rgba(0, 120, 255, .045);
+}
+
+/* Linha interna do rosto */
+
+.ai-head::after {
+    inset: 9% 19% 10% 19%;
+
+    border: 0;
+    border-left: 1px solid rgba(0, 145, 255, .20);
+    border-right: 1px solid rgba(110, 65, 255, .16);
+
+    border-radius:
+        48% 48% 42% 42% /
+        29% 29% 71% 71%;
+
+    box-shadow:
+        inset 18px 0 30px rgba(0, 100, 255, .025),
+        inset -18px 0 30px rgba(110, 50, 255, .025);
+}
+
+/* OLHOS — expressão séria */
+
+.ai-eye {
+    top: 30%;
+    width: 29%;
+    height: 5.5%;
+
+    background:
+        radial-gradient(
+            ellipse at center,
+            #ffffff 0%,
+            #b8eaff 8%,
+            #219bff 25%,
+            rgba(0, 104, 255, .65) 48%,
+            transparent 75%
+        );
+
+    border-radius: 50% 50% 42% 42%;
+
+    box-shadow:
+        0 0 7px rgba(110, 205, 255, .95),
+        0 0 20px rgba(0, 125, 255, .85),
+        0 0 42px rgba(0, 95, 255, .38);
+
+    animation:
+        aiSlowBlink 10s ease-in-out infinite,
+        aiEyePulse 4.8s ease-in-out infinite;
+}
+
+/* inclinação para dar expressão de raiva */
+
+.ai-eye-left {
+    left: 15%;
+    transform: rotate(8deg);
+}
+
+.ai-eye-right {
+    right: 15%;
+    transform: rotate(-8deg);
+}
+
+/* núcleo dos olhos */
+
+.ai-eye span {
+    width: 17%;
+    height: 75%;
+    left: 41.5%;
+    top: 12.5%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 6px #ffffff,
+        0 0 15px #53b8ff,
+        0 0 28px #0077ff;
+
+    animation: aiCorePulse 4.8s ease-in-out infinite;
+}
+
+/* SOBRANCELHAS NEON */
+
+.ai-eye::before {
+    content: "";
+    position: absolute;
+    width: 105%;
+    height: 1px;
+    left: -3%;
+
+    top: -45%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 145, 255, .62),
+        transparent
+    );
+
+    box-shadow:
+        0 0 8px rgba(0, 130, 255, .65);
+
+    transform: rotate(-5deg);
+}
+
+.ai-eye-right::before {
+    transform: rotate(5deg);
+}
+
+/* NARIZ — estrutura holográfica */
+
+.ai-nose {
+    left: 50%;
+    top: 35%;
+    width: 2px;
+    height: 29%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(70, 185, 255, .42),
+            rgba(0, 125, 255, .65),
+            rgba(100, 65, 255, .38),
+            transparent
+        );
+
+    box-shadow:
+        0 0 8px rgba(0, 145, 255, .65),
+        0 0 20px rgba(0, 110, 255, .25);
+
+    opacity: .75;
+}
+
+/* boca mais angular */
+
+.ai-mouth {
+    left: 32%;
+    right: 32%;
+    top: 69%;
+    height: 5%;
+
+    border: 0;
+    border-bottom: 1px solid rgba(40, 175, 255, .52);
+
+    border-radius: 0 0 50% 50%;
+
+    box-shadow:
+        0 5px 12px rgba(0, 130, 255, .22);
+
+    transform: perspective(300px) rotateX(8deg);
+}
+
+/* partículas mais elegantes */
+
+.ai-particle {
+    width: 2px;
+    height: 2px;
+
+    background: #45b7ff;
+
+    box-shadow:
+        0 0 5px #1598ff,
+        0 0 12px rgba(0, 120, 255, .8);
+
+    animation:
+        aiFragmentFloat 7s ease-in-out infinite;
+}
+
+.p1 { left: 2%;  top: 24%; animation-delay: -1s; }
+.p2 { left: 5%;  top: 42%; animation-delay: -4s; }
+.p3 { left: 9%;  top: 59%; animation-delay: -2s; }
+.p4 { right: 1%; top: 20%; animation-delay: -5s; }
+.p5 { right: 3%; top: 39%; animation-delay: -3s; }
+.p6 { right: 7%; top: 58%; animation-delay: -6s; }
+.p7 { left: 17%; top: 88%; animation-delay: -2.5s; }
+.p8 { left: 80%; top: 86%; animation-delay: -4.5s; }
+.p9 { left: 94%; top: 31%; animation-delay: -1.5s; }
+.p10 { left: 12%; top: 73%; animation-delay: -5.5s; }
+
+/* =========================================================
+   MOVIMENTO — extremamente lento
+   ========================================================= */
+
+@keyframes aiSlowBlink {
+
+    0%, 42%, 44%,
+    72%, 74%, 100% {
+        transform: scaleY(1);
+    }
+
+    43%, 73% {
+        transform: scaleY(.10);
+    }
+}
+
+@keyframes aiEyePulse {
+
+    0%, 100% {
+        opacity: .78;
+        filter: brightness(.88);
+    }
+
+    50% {
+        opacity: 1;
+        filter: brightness(1.28);
+    }
+}
+
+@keyframes aiCorePulse {
+
+    0%, 100% {
+        opacity: .65;
+        transform: scale(.9);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.12);
+    }
+}
+
+@keyframes aiFaceBreath {
+
+    0%, 100% {
+        opacity: .76;
+    }
+
+    50% {
+        opacity: .88;
+    }
+}
+
+@keyframes aiFragmentFloat {
+
+    0%, 100% {
+        transform: translate(0, 0);
+        opacity: .18;
+    }
+
+    50% {
+        transform: translate(7px, -9px);
+        opacity: .85;
+    }
+}
+
+/* celular */
+
+@media (max-width: 700px) {
+
+    .ai-neon-face {
+        width: 470px;
+        height: 610px;
+        right: -150px;
+        opacity: .52;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .ai-neon-face {
+        width: 410px;
+        height: 540px;
+        right: -140px;
+        opacity: .42;
+    }
+}
+
+
+
+/* =========================================================
+   DaNikeAI — ESFERA ROBÓTICA / SENSOR
+   ========================================================= */
+
+.ai-orb {
+    position: fixed;
+    width: min(590px, 68vw);
+    height: min(590px, 68vw);
+    right: -35px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 0;
+    pointer-events: auto;
+    cursor: pointer;
+    opacity: .88;
+    filter:
+        drop-shadow(0 0 18px rgba(0, 135, 255, .30))
+        drop-shadow(0 0 70px rgba(0, 70, 255, .12));
+}
+
+.orb-shell {
+    position: absolute;
+    inset: 5%;
+    border-radius: 50%;
+    transform-style: preserve-3d;
+    animation: orbFloat 7s ease-in-out infinite;
+}
+
+/* esfera principal */
+
+.orb-core {
+    position: absolute;
+    inset: 7%;
+    overflow: hidden;
+    border-radius: 50%;
+
+    background:
+        radial-gradient(circle at 34% 27%,
+            rgba(115, 205, 255, .22),
+            transparent 12%),
+        radial-gradient(circle at 45% 42%,
+            rgba(0, 130, 255, .13),
+            transparent 36%),
+        radial-gradient(circle at 68% 70%,
+            rgba(65, 40, 255, .12),
+            transparent 34%),
+        radial-gradient(circle at 50% 50%,
+            #08111d 0%,
+            #030811 53%,
+            #010307 100%);
+
+    border: 1px solid rgba(75, 180, 255, .55);
+
+    box-shadow:
+        inset -35px -30px 70px rgba(0, 0, 0, .85),
+        inset 25px 20px 55px rgba(30, 145, 255, .14),
+        0 0 20px rgba(0, 135, 255, .35),
+        0 0 65px rgba(0, 80, 255, .20);
+}
+
+/* anéis tecnológicos */
+
+.orb-ring {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.orb-ring-1 {
+    inset: 1%;
+    border: 1px solid rgba(0, 150, 255, .30);
+    box-shadow:
+        0 0 12px rgba(0, 130, 255, .22);
+}
+
+.orb-ring-2 {
+    inset: 3.5%;
+    border: 1px dashed rgba(75, 175, 255, .22);
+    animation: ringRotate 28s linear infinite;
+}
+
+.orb-ring-3 {
+    inset: 8%;
+    border: 1px solid rgba(90, 70, 255, .18);
+    transform: rotateX(65deg);
+    animation: ringPulse 5s ease-in-out infinite;
+}
+
+/* sensor horizontal */
+
+.orb-scan-line {
+    position: absolute;
+    left: 3%;
+    right: 3%;
+    top: 46%;
+    height: 8%;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent,
+            rgba(0, 125, 255, .08) 18%,
+            rgba(0, 145, 255, .30) 45%,
+            rgba(150, 225, 255, .92) 50%,
+            rgba(0, 145, 255, .30) 55%,
+            rgba(0, 125, 255, .08) 82%,
+            transparent
+        );
+
+    box-shadow:
+        0 0 8px rgba(0, 145, 255, .75),
+        0 0 24px rgba(0, 115, 255, .48);
+
+    overflow: hidden;
+}
+
+.scan-beam {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 28%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(170, 235, 255, .92),
+            #ffffff,
+            rgba(80, 190, 255, .85),
+            transparent
+        );
+
+    filter: blur(1px);
+    animation: scanBeam 2.8s ease-in-out infinite;
+}
+
+.scan-center {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 5px #ffffff,
+        0 0 14px #52c5ff,
+        0 0 30px #008cff;
+}
+
+/* reflexos */
+
+.orb-reflection {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.reflection-1 {
+    width: 30%;
+    height: 14%;
+    left: 19%;
+    top: 13%;
+    transform: rotate(-28deg);
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(210, 245, 255, .30),
+        transparent
+    );
+
+    filter: blur(5px);
+}
+
+.reflection-2 {
+    width: 12%;
+    height: 7%;
+    left: 31%;
+    top: 10%;
+
+    background: rgba(220, 250, 255, .45);
+    filter: blur(4px);
+}
+
+.reflection-3 {
+    width: 18%;
+    height: 5%;
+    right: 16%;
+    bottom: 18%;
+
+    background: rgba(40, 110, 255, .18);
+    filter: blur(8px);
+}
+
+/* linhas de circuito */
+
+.orb-tech-line {
+    position: absolute;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 135, 255, .45),
+        transparent
+    );
+    opacity: .5;
+}
+
+.line-1 {
+    width: 22%;
+    left: 11%;
+    top: 31%;
+    transform: rotate(-16deg);
+}
+
+.line-2 {
+    width: 17%;
+    right: 10%;
+    top: 32%;
+    transform: rotate(18deg);
+}
+
+.line-3 {
+    width: 20%;
+    left: 13%;
+    bottom: 29%;
+    transform: rotate(15deg);
+}
+
+.line-4 {
+    width: 15%;
+    right: 12%;
+    bottom: 28%;
+    transform: rotate(-17deg);
+}
+
+/* status */
+
+.orb-status {
+    position: absolute;
+    left: 50%;
+    bottom: 16%;
+    transform: translateX(-50%);
+
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    font-family: monospace;
+    font-size: 8px;
+    letter-spacing: 3px;
+
+    color: rgba(125, 205, 255, .55);
+}
+
+.status-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+
+    background: #3db9ff;
+
+    box-shadow:
+        0 0 6px #3db9ff,
+        0 0 14px rgba(0, 140, 255, .8);
+}
+
+/* fragmentos */
+
+.orb-fragment {
+    position: absolute;
+    width: 5px;
+    height: 2px;
+
+    background: #55c7ff;
+
+    box-shadow:
+        0 0 6px #169cff,
+        0 0 16px rgba(0, 130, 255, .75);
+
+    opacity: .7;
+}
+
+.frag-1 { left: 1%; top: 30%; transform: rotate(-24deg); }
+.frag-2 { left: 5%; top: 64%; transform: rotate(28deg); }
+.frag-3 { right: 0; top: 25%; transform: rotate(20deg); }
+.frag-4 { right: 4%; top: 70%; transform: rotate(-30deg); }
+.frag-5 { left: 18%; top: 2%; transform: rotate(12deg); }
+.frag-6 { right: 20%; top: 3%; transform: rotate(-15deg); }
+.frag-7 { left: 27%; bottom: 0; transform: rotate(-18deg); }
+.frag-8 { right: 28%; bottom: 1%; transform: rotate(20deg); }
+
+/* flashes */
+
+.orb-flash {
+    position: absolute;
+    inset: 5%;
+    border-radius: 50%;
+    background: #ffffff;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.ai-orb.flash-active .flash-1 {
+    animation: cameraFlash .13s linear;
+}
+
+.ai-orb.flash-active .flash-2 {
+    animation: cameraFlash .13s linear .19s;
+}
+
+/* scanner desligado */
+
+.ai-orb.scanner-off .scan-beam,
+.ai-orb.scanner-off .scan-center {
+    animation-play-state: paused;
+    opacity: .18;
+}
+
+.ai-orb.scanner-off .orb-scan-line {
+    opacity: .38;
+}
+
+.ai-orb.scanner-off .status-dot {
+    background: #52616d;
+    box-shadow: none;
+}
+
+.ai-orb.scanner-off .status-text {
+    opacity: .4;
+}
+
+/* dica */
+
+.orb-hint {
+    position: absolute;
+    left: 50%;
+    bottom: -3%;
+    transform: translateX(-50%);
+
+    white-space: nowrap;
+
+    font-family: monospace;
+    font-size: 8px;
+    letter-spacing: 2px;
+
+    color: rgba(105, 190, 255, .38);
+}
+
+/* animações */
+
+@keyframes scanBeam {
+    0% {
+        left: -30%;
+        opacity: .15;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        left: 102%;
+        opacity: .15;
+    }
+}
+
+@keyframes orbFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes ringRotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ringPulse {
+    0%, 100% {
+        opacity: .25;
+    }
+
+    50% {
+        opacity: .65;
+    }
+}
+
+@keyframes cameraFlash {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: .92;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@media (max-width: 700px) {
+    .ai-orb {
+        width: 430px;
+        height: 430px;
+        right: -135px;
+        opacity: .60;
+    }
+
+    .orb-hint {
+        bottom: -5%;
+    }
+}
+
+@media (max-width: 430px) {
+    .ai-orb {
+        width: 370px;
+        height: 370px;
+        right: -125px;
+        opacity: .48;
+    }
+
+    .orb-hint {
+        font-size: 7px;
+    }
+}
+
+/* =========================================================
+   ESFERA IA — POSIÇÃO PRINCIPAL DO HERO
+   ========================================================= */
+
+.ai-orb {
+    position: absolute !important;
+    width: min(520px, 58vw) !important;
+    height: min(520px, 58vw) !important;
+
+    right: 4% !important;
+    top: 50% !important;
+
+    transform: translateY(-50%) !important;
+
+    opacity: .95 !important;
+    z-index: 1 !important;
+
+    cursor: default !important;
+    pointer-events: none !important;
+}
+
+.orb-hint {
+    display: none !important;
+}
+
+.orb-shell {
+    animation: orbFloat 7s ease-in-out infinite !important;
+}
+
+/* deixa a esfera realmente destacada */
+
+.orb-core {
+    box-shadow:
+        inset -35px -30px 70px rgba(0, 0, 0, .88),
+        inset 25px 20px 55px rgba(30, 145, 255, .18),
+        0 0 25px rgba(0, 145, 255, .48),
+        0 0 75px rgba(0, 90, 255, .28);
+}
+
+@media (max-width: 800px) {
+
+    .ai-orb {
+        position: absolute !important;
+
+        width: 330px !important;
+        height: 330px !important;
+
+        right: 50% !important;
+        top: 78% !important;
+
+        transform: translate(50%, -50%) !important;
+
+        opacity: .62 !important;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .ai-orb {
+        width: 285px !important;
+        height: 285px !important;
+
+        top: 82% !important;
+
+        opacity: .52 !important;
+    }
+}
+
+
+/* =========================================================
+   ESFERA IA — FIXA NO TOPO E CENTRALIZADA
+   ========================================================= */
+
+.ai-orb {
+    position: fixed !important;
+
+    width: min(520px, 70vw) !important;
+    height: min(520px, 70vw) !important;
+
+    left: 50% !important;
+    right: auto !important;
+    top: 50% !important;
+
+    transform: translate(-50%, -50%) !important;
+
+    z-index: 0 !important;
+    pointer-events: none !important;
+
+    opacity: .82 !important;
+}
+
+/* conteúdo do site permanece acima da esfera */
+
+header,
+main,
+footer,
+section {
+    position: relative;
+    z-index: 2;
+}
+
+/* remove indicação de toque */
+
+.orb-hint {
+    display: none !important;
+}
+
+@media (max-width: 700px) {
+
+    .ai-orb {
+        width: 350px !important;
+        height: 350px !important;
+        top: 50% !important;
+        opacity: .48 !important;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .ai-orb {
+        width: 300px !important;
+        height: 300px !important;
+        opacity: .38 !important;
+    }
+}
+
+
+/* =========================================================
+   SCANNER DA NIKE AI — FEIXE VERMELHO + FLASH INFERIOR
+   ========================================================= */
+
+/* faixa superior: NÃO desliza lateralmente */
+
+.orb-scan-line {
+    top: 36% !important;
+    left: -45% !important;
+    right: -45% !important;
+    height: 12% !important;
+
+    transform-origin: center center !important;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(255, 0, 15, .08) 15%,
+            rgba(255, 0, 20, .45) 38%,
+            #ff1025 50%,
+            rgba(255, 0, 20, .45) 62%,
+            rgba(255, 0, 15, .08) 85%,
+            transparent 100%
+        ) !important;
+
+    box-shadow:
+        0 0 8px rgba(255, 0, 20, .95),
+        0 0 22px rgba(255, 0, 20, .80),
+        0 0 50px rgba(255, 0, 20, .50),
+        0 0 100px rgba(255, 0, 20, .22) !important;
+
+    animation: redScannerExpand 3.2s ease-in-out infinite !important;
+}
+
+/* desliga o antigo feixe azul */
+
+.scan-beam {
+    display: none !important;
+}
+
+/* ponto central vermelho */
+
+.scan-center {
+    background: #ffffff !important;
+
+    box-shadow:
+        0 0 5px #ffffff,
+        0 0 12px #ff2638,
+        0 0 28px #ff0018,
+        0 0 55px rgba(255, 0, 20, .75) !important;
+
+    animation: scannerCorePulse 3.2s ease-in-out infinite !important;
+}
+
+/* =========================================================
+   DOIS FLASHES NA PARTE DE BAIXO
+   ========================================================= */
+
+.ai-orb::after {
+    content: "";
+    position: absolute;
+
+    left: 50%;
+    top: 64%;
+
+    width: 46%;
+    height: 16%;
+
+    transform: translateX(-50%);
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(255,255,255,0) 20%,
+            rgba(255,255,255,.95) 42%,
+            #ffffff 50%,
+            rgba(255,255,255,.95) 58%,
+            rgba(255,255,255,0) 80%,
+            transparent 100%
+        );
+
+    opacity: 0;
+
+    filter:
+        blur(1px)
+        drop-shadow(0 0 8px #ffffff)
+        drop-shadow(0 0 22px #55bfff);
+
+    z-index: 20;
+}
+
+.ai-orb::before {
+    content: "";
+    position: absolute;
+
+    left: 50%;
+    top: 64%;
+
+    width: 62%;
+    height: 2px;
+
+    transform: translateX(-50%);
+
+    background: rgba(130, 210, 255, .65);
+
+    box-shadow:
+        0 0 8px rgba(80,180,255,.8),
+        0 0 20px rgba(0,130,255,.45);
+
+    opacity: .5;
+}
+
+/* =========================================================
+   CICLO
+   scanner → desliga → flash → flash
+   ========================================================= */
+
+@keyframes redScannerExpand {
+
+    0% {
+        transform: scaleX(.18);
+        opacity: .15;
+    }
+
+    12% {
+        transform: scaleX(.45);
+        opacity: .65;
+    }
+
+    32% {
+        transform: scaleX(1);
+        opacity: 1;
+    }
+
+    48% {
+        transform: scaleX(1.35);
+        opacity: 1;
+    }
+
+    55% {
+        transform: scaleX(1.75);
+        opacity: .95;
+    }
+
+    62% {
+        transform: scaleX(2.4);
+        opacity: .65;
+    }
+
+    68% {
+        transform: scaleX(3.2);
+        opacity: .20;
+    }
+
+    72%,
+    100% {
+        transform: scaleX(3.8);
+        opacity: 0;
+    }
+}
+
+@keyframes scannerCorePulse {
+
+    0%,
+    45% {
+        opacity: .2;
+        transform: translate(-50%, -50%) scale(.65);
+    }
+
+    50% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.4);
+    }
+
+    62%,
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(2);
+    }
+}
+
+/* flashes independentes após o scanner */
+
+@keyframes lowerDoubleFlash {
+
+    0%,
+    69% {
+        opacity: 0;
+        transform: translateX(-50%) scaleX(.15);
+    }
+
+    /* FLASH 1 */
+
+    70% {
+        opacity: 0;
+        transform: translateX(-50%) scaleX(.15);
+    }
+
+    71% {
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    72.5% {
+        opacity: 0;
+        transform: translateX(-50%) scaleX(1.15);
+    }
+
+    /* FLASH 2 */
+
+    77% {
+        opacity: 0;
+        transform: translateX(-50%) scaleX(.15);
+    }
+
+    78% {
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    79.5% {
+        opacity: 0;
+        transform: translateX(-50%) scaleX(1.15);
+    }
+
+    80%,
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) scaleX(.15);
+    }
+}
+
+.ai-orb::after {
+    animation: lowerDoubleFlash 3.2s linear infinite !important;
+}
+

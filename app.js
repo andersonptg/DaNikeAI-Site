@@ -1,0 +1,234 @@
+const REPO = "andersonptg/DaNikeAI";
+const API_URL = `https://api.github.com/repos/${REPO}/releases`;
+
+async function carregarVersoes() {
+    try {
+        const resposta = await fetch(API_URL);
+
+        if (!resposta.ok) {
+            throw new Error("Falha ao consultar o GitHub.");
+        }
+
+        const releases = await resposta.json();
+
+        if (!releases.length) {
+            console.warn("Nenhuma versão encontrada.");
+            return;
+        }
+
+        const releaseAtual = releases[0];
+
+        const versaoAtual =
+            releaseAtual.tag_name?.replace(/^v/i, "") || "—";
+
+        function numeroVersao(valor) {
+            return valor
+                .replace(/^v/i, "")
+                .split(".")
+                .map(n => parseInt(n, 10) || 0);
+        }
+
+        function compararVersoes(a, b) {
+            const va = numeroVersao(a);
+            const vb = numeroVersao(b);
+
+            for (let i = 0; i < 3; i++) {
+                if ((va[i] || 0) > (vb[i] || 0)) return 1;
+                if ((va[i] || 0) < (vb[i] || 0)) return -1;
+            }
+
+            return 0;
+        }
+
+        const releasesVisiveis = releases.filter(release => {
+            const versao = release.tag_name?.replace(/^v/i, "");
+            return versao && compararVersoes(versao, versaoAtual) >= 0;
+        });
+
+        // Atualiza a versão principal
+        const elementoVersao = document.querySelector(".current-version strong");
+
+        if (elementoVersao) {
+            elementoVersao.textContent = versaoAtual;
+        }
+
+        // Atualiza a lista de versões
+        const lista = document.querySelector(".version-list");
+
+        if (lista) {
+            lista.innerHTML = "";
+
+            releasesVisiveis.forEach((release, indice) => {
+                const versao =
+                    release.tag_name?.replace(/^v/i, "") || "—";
+
+                const item = document.createElement("div");
+                item.className = "version-item";
+
+                if (indice === 0) {
+                    item.classList.add("active");
+                }
+
+                const info = document.createElement("div");
+
+                const nome = document.createElement("strong");
+                nome.textContent = `DaNikeAI ${versao}`;
+
+                const status = document.createElement("span");
+                status.textContent =
+                    indice === 0
+                        ? "Versão atual"
+                        : "Versão anterior";
+
+                info.appendChild(nome);
+                info.appendChild(status);
+
+                const link = document.createElement("a");
+
+                const apk = release.assets?.find(
+                    asset => asset.name.toLowerCase().endsWith(".apk")
+                );
+
+                link.href = apk
+                    ? apk.browser_download_url
+                    : release.html_url;
+
+                link.textContent = "BAIXAR";
+
+                link.target = "_blank";
+                link.rel = "noopener noreferrer";
+
+                item.appendChild(info);
+                item.appendChild(link);
+
+                lista.appendChild(item);
+            });
+        }
+
+        console.log(
+            `DaNikeAI: ${versaoAtual} carregada automaticamente.`
+        );
+
+    } catch (erro) {
+        console.error("Erro ao carregar versões:", erro);
+    }
+}
+
+carregarVersoes();
+
+
+/* =========================================================
+   DaNikeAI — Scanner + sons eletrônicos
+   ========================================================= */
+
+(() => {
+    const orb = document.getElementById("aiOrb");
+
+    if (!orb) return;
+
+    let scannerAtivo = true;
+    let audioContext = null;
+
+    function iniciarAudio() {
+        if (!audioContext) {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+
+            if (!AudioCtx) return null;
+
+            audioContext = new AudioCtx();
+        }
+
+        if (audioContext.state === "suspended") {
+            audioContext.resume();
+        }
+
+        return audioContext;
+    }
+
+    function somScanner() {
+        const ctx = iniciarAudio();
+
+        if (!ctx) return;
+
+        const agora = ctx.currentTime;
+
+        const osc = ctx.createOscillator();
+        const ganho = ctx.createGain();
+
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(420, agora);
+        osc.frequency.exponentialRampToValueAtTime(920, agora + .12);
+
+        ganho.gain.setValueAtTime(.0001, agora);
+        ganho.gain.exponentialRampToValueAtTime(.09, agora + .015);
+        ganho.gain.exponentialRampToValueAtTime(.0001, agora + .18);
+
+        osc.connect(ganho);
+        ganho.connect(ctx.destination);
+
+        osc.start(agora);
+        osc.stop(agora + .2);
+    }
+
+    function somDesligar() {
+        const ctx = iniciarAudio();
+
+        if (!ctx) return;
+
+        const agora = ctx.currentTime;
+
+        const osc = ctx.createOscillator();
+        const ganho = ctx.createGain();
+
+        osc.type = "triangle";
+        osc.frequency.setValueAtTime(760, agora);
+        osc.frequency.exponentialRampToValueAtTime(180, agora + .22);
+
+        ganho.gain.setValueAtTime(.0001, agora);
+        ganho.gain.exponentialRampToValueAtTime(.075, agora + .01);
+        ganho.gain.exponentialRampToValueAtTime(.0001, agora + .25);
+
+        osc.connect(ganho);
+        ganho.connect(ctx.destination);
+
+        osc.start(agora);
+        osc.stop(agora + .27);
+    }
+
+    function flashDuplo() {
+        orb.classList.remove("flash-active");
+
+        void orb.offsetWidth;
+
+        orb.classList.add("flash-active");
+
+        setTimeout(() => {
+            orb.classList.remove("flash-active");
+        }, 500);
+    }
+
+    orb.addEventListener("click", () => {
+
+        scannerAtivo = !scannerAtivo;
+
+        iniciarAudio();
+
+        if (scannerAtivo) {
+            orb.classList.remove("scanner-off");
+            somScanner();
+        } else {
+            orb.classList.add("scanner-off");
+            somDesligar();
+            flashDuplo();
+        }
+    });
+
+    orb.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            orb.click();
+        }
+    });
+
+    orb.setAttribute("tabindex", "0");
+})();
